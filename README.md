@@ -68,3 +68,44 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Docker Build
+
+> docker build -f Dockerfile.dev
+
+-f tag specifies the file we want to use
+
+> To Delete Duplicate Dependencies remove node_modules folder
+
+## Port Mapping
+
+> docker run -p 3000:3000 {ImageId}
+
+## Docker Volume
+
+> Reference to files and folders on local machine
+
+```
+docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image_id>
+
+# -v /app/node_modules : Put a bookmark on the node_modules folder
+
+# -v $(pwd):/app : Map the pwd into the /app folder
+
+#-v : Set up Volume
+: (colon) specifies that map to folder outside container. We deleted node_modules so we don't need colon in the bookmark command
+```
+
+> Updates Changes from our Source Code to Container with Docker Volume
+
+# Run Tests
+
+> docker run -it <image id> npm run test
+
+# Docker Attach
+
+> docker attach <image_id> Attach stdin, stdout
+
+## Tagging
+
+> docker build -t sulav/redis:latest .
